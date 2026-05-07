@@ -2,6 +2,20 @@
 
 Production-ready end-to-end time series forecasting system that predicts the next 8 weeks of sales for each state using multiple forecasting models and exposes predictions through a REST API.
 
+## Demo Video
+
+[Watch the Loom walkthrough](https://www.loom.com/share/186ef8fa067c4650ae3a71975ac03d20)
+
+<p>
+  <a href="https://www.loom.com/share/186ef8fa067c4650ae3a71975ac03d20">
+    <img
+      src="https://cdn.loom.com/sessions/thumbnails/186ef8fa067c4650ae3a71975ac03d20-with-play.gif"
+      alt="Watch the project walkthrough on Loom"
+      width="720"
+    />
+  </a>
+</p>
+
 ---
 
 # Objective
