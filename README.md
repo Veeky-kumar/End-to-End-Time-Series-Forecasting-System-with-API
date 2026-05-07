@@ -1,10 +1,82 @@
-# Time Series Forecasting System
+# Time Series Forecasting System with FastAPI
 
-This project forecasts the next 8 weeks of total sales for each state using the dataset columns `State`, `Date`, `Total`, and `Category`.
+Production-ready end-to-end time series forecasting system that predicts the next 8 weeks of sales for each state using multiple forecasting models and exposes predictions through a REST API.
 
-The refactor goal is simple: keep the project modular like a real backend or ML system, but make the execution flow easy to read from top to bottom.
+---
 
-## Project structure
+# Objective
+
+The goal of this project is to:
+
+- Train multiple forecasting algorithms
+- Compare and automatically select the best model
+- Forecast future sales for each state
+- Serve predictions through FastAPI
+- Follow real-world backend ML architecture
+
+---
+
+# Dataset Schema
+
+The dataset contains:
+
+| Column | Description |
+|---|---|
+| State | State name |
+| Date | Historical sales date |
+| Total | Sales value |
+| Category | Product category |
+
+Example:
+
+```csv
+State,Date,Total,Category
+Alabama,1/12/2019,109574036,Beverages
+Arizona,1/12/2019,109101595,Beverages
+```
+
+---
+
+# System Architecture
+
+```text
+Raw Dataset
+    ↓
+Preprocessing
+    ↓
+Feature Engineering
+    ↓
+Train Multiple Models
+    ↓
+Evaluate Models
+    ↓
+Best Model Selection
+    ↓
+Save Trained Models (.joblib)
+    ↓
+FastAPI REST API
+    ↓
+Forecast Response
+```
+
+---
+
+# Tech Stack
+
+- Python
+- Pandas
+- NumPy
+- Statsmodels
+- Prophet
+- XGBoost
+- TensorFlow / Keras
+- FastAPI
+- Matplotlib
+- Joblib
+
+---
+
+# Project Structure
 
 ```text
 time-series-forecasting/
@@ -48,9 +120,73 @@ time-series-forecasting/
 `-- .gitignore
 ```
 
-## Beginner-friendly flow
+---
 
-If you want to understand the project in the simplest order, read the files like this:
+# Forecasting Models Implemented
+
+This project trains and compares:
+
+1. ARIMA / SARIMA
+2. Facebook Prophet
+3. XGBoost
+4. LSTM Neural Network
+
+---
+
+# Feature Engineering
+
+The following forecasting features are created:
+
+## Lag Features
+- sales_lag_1
+- sales_lag_7
+- sales_lag_30
+
+## Rolling Statistics
+- rolling_mean_7
+- rolling_std_7
+- rolling_mean_30
+- rolling_std_30
+
+## Temporal Features
+- day_of_week
+- month
+- quarter
+- week_of_year
+- is_weekend
+
+## Holiday Features
+- Indian holiday flags using `holidays` library
+
+---
+
+# Model Selection Strategy
+
+Each forecasting model is trained independently for every state.
+
+Models are compared using:
+
+- RMSE
+- MAE
+- MAPE
+
+The model with the lowest validation RMSE is automatically selected as the best forecasting model for that state.
+
+---
+
+# Production Design Decisions
+
+- Models are saved using Joblib to avoid retraining during API requests.
+- Weekly resampling is used for consistent forecasting intervals.
+- Preprocessing is separated from training for modularity.
+- FastAPI exposes lightweight prediction endpoints.
+- The forecasting pipeline is organized into reusable modules.
+
+---
+
+# Beginner-Friendly Learning Flow
+
+To understand the project step-by-step:
 
 1. `src/run_pipeline.py`
 2. `src/preprocessing.py`
@@ -60,72 +196,101 @@ If you want to understand the project in the simplest order, read the files like
 6. `src/predict.py`
 7. `api/main.py`
 
-`run_pipeline.py` is the best starting point because it shows the full forecasting workflow in one place:
+---
 
-1. preprocess the raw data
-2. build features
-3. train and compare models
-4. save the winning models
-5. generate 8-week forecasts
+# Setup
 
-## What each module does
-
-- `preprocessing.py` loads the raw dataset, validates the schema, parses dates, renames `Total` to `sales`, and resamples state sales into weekly series.
-- `feature_engineering.py` creates temporal, lag, rolling, and holiday features.
-- `train.py` trains ARIMA, Prophet, XGBoost, and LSTM state by state, compares them using validation RMSE, and saves the best model per state.
-- `evaluate.py` contains metrics and plotting helpers.
-- `predict.py` loads saved models and creates future forecasts.
-- `api/main.py` exposes a simple FastAPI interface for prediction.
-
-## Why these features matter
-
-- Lag features help the model use recent history, which is one of the strongest signals in forecasting.
-- Rolling statistics help capture short-term trend and volatility.
-- Temporal features help the model recognize weekly, monthly, and quarterly patterns.
-- Holiday flags help the model react to unusual demand around special dates.
-
-## Setup
+## Create Virtual Environment
 
 ```bash
 python -m venv .venv
+```
+
+## Activate Environment
+
+### Windows
+```bash
 .venv\Scripts\activate
+```
+
+### Linux / Mac
+```bash
+source .venv/bin/activate
+```
+
+## Install Dependencies
+
+```bash
 pip install -r requirements.txt
 ```
 
-## Run the full pipeline
+---
+
+# Run Full Forecasting Pipeline
 
 ```bash
 python -m src.run_pipeline
 ```
 
-This will create:
+This generates:
 
-- `data/processed/cleaned_data.csv`
-- `saved_models/forecast_bundle.joblib`
-- `outputs/metrics.json`
-- `outputs/forecasts.csv`
-- `outputs/plots/*.png`
+- processed dataset
+- trained models
+- evaluation metrics
+- forecast CSVs
+- forecast plots
 
-## Explore the data first
+---
 
-Open `notebooks/eda.ipynb` to inspect:
+# Outputs Generated
 
-- trend visualization
+```text
+data/processed/cleaned_data.csv
+saved_models/forecast_bundle.joblib
+outputs/metrics.json
+outputs/forecasts.csv
+outputs/plots/*.png
+```
+
+---
+
+# Exploratory Data Analysis
+
+Open:
+
+```text
+notebooks/eda.ipynb
+```
+
+EDA includes:
+- trend analysis
 - seasonality analysis
-- missing value analysis
-- state-wise sales patterns
+- missing value inspection
+- state-wise visualization
 
-## Run the API
+---
+
+# Run FastAPI Server
 
 ```bash
 uvicorn api.main:app --reload
 ```
 
-Swagger docs will be available at `http://127.0.0.1:8000/docs`.
+Swagger API documentation:
 
-## API examples
+```text
+http://127.0.0.1:8000/docs
+```
 
-### `GET /health`
+---
+
+# API Endpoints
+
+## GET /health
+
+Returns API status.
+
+### Response
 
 ```json
 {
@@ -133,13 +298,22 @@ Swagger docs will be available at `http://127.0.0.1:8000/docs`.
 }
 ```
 
-### `GET /metrics`
+---
 
-Returns the saved model comparison and state-level metrics.
+## GET /metrics
 
-### `POST /predict`
+Returns:
+- model comparison
+- RMSE / MAE / MAPE
+- state-level metrics
 
-Request:
+---
+
+## POST /predict
+
+Generate next 8-week sales forecast.
+
+### Request
 
 ```json
 {
@@ -147,17 +321,82 @@ Request:
 }
 ```
 
-Response:
+### Response
 
 ```json
 {
   "state": "Alabama",
-  "forecast": [236709479.5, 233332492.6, 231813792.7, 346693411.1, 355352953.1, 233780694.8, 223035049.7, 276511952.5]
+  "forecast": [
+    236709479.5,
+    233332492.6,
+    231813792.7,
+    346693411.1,
+    355352953.1,
+    233780694.8,
+    223035049.7,
+    276511952.5
+  ]
 }
 ```
 
-## Notes
+---
 
-- The raw dataset contains mixed date formats, so preprocessing handles that explicitly.
-- Weekly resampling is used so the "next 8 weeks" forecast has a consistent time step.
-- Prophet is included in the codebase, but on some Windows environments it may require a working CmdStan installation.
+# How Prediction Requests Work
+
+```text
+Client Request
+      ↓
+FastAPI receives request
+      ↓
+Load saved forecast_bundle.joblib
+      ↓
+Select trained model for requested state
+      ↓
+Generate next 8-week forecast
+      ↓
+Return JSON response
+```
+
+---
+
+# Screenshots
+
+## API Documentation
+
+![Swagger API](assets/swagger.png)
+
+---
+
+## Forecast Visualization
+
+![Forecast Plot](assets/forecast_plot.png)
+
+---
+
+## Actual vs Predicted
+
+![Actual vs Predicted](assets/actual_vs_predicted.png)
+
+---
+## Project Structure
+
+![Project Structure](assets/project_structure.png)
+
+---
+
+# Notes
+
+- Mixed date formats are handled during preprocessing.
+- Missing values are interpolated and forward/backward filled.
+- Prophet may require CmdStan installation on Windows systems.
+- Weekly forecasting is used to match the assignment requirement.
+
+---
+
+# Future Improvements
+
+- Docker deployment
+- Cloud deployment
+- Automated retraining
+- Monitoring pipeline
+- Frontend dashboard
