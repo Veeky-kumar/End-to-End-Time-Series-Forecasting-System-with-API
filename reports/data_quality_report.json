@@ -1,0 +1,12 @@
+{
+  "rows": 11008,
+  "states": 43,
+  "categories": [
+    "Beverages"
+  ],
+  "date_min": "2019-01-13 00:00:00",
+  "date_max": "2023-12-03 00:00:00",
+  "per_state_min_rows": 256,
+  "per_state_max_rows": 256,
+  "missing_sales": 0
+}

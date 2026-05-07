@@ -1,0 +1,62 @@
+BEGIN:VCALENDAR
+PRODID:-//Google Inc//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:REQUEST
+BEGIN:VTIMEZONE
+TZID:Asia/Kolkata
+X-LIC-LOCATION:Asia/Kolkata
+BEGIN:STANDARD
+TZOFFSETFROM:+0530
+TZOFFSETTO:+0530
+TZNAME:GMT+5:30
+DTSTART:19700101T000000
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTART;TZID=Asia/Kolkata:20260507T230000
+DTEND;TZID=Asia/Kolkata:20260508T000000
+DTSTAMP:20260506T142019Z
+ORGANIZER;CN=Saurabh Sharda @ BuzzClan:mailto:saurabh.sharda@buzzclan.com
+UID:3l5p42i9nn8kfl36irlgjsvdk7@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=Ety Garg;X-NUM-GUESTS=0:mailto:egarg@buzzclan.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=EA @ BuzzClan;X-NUM-GUESTS=0:mailto:ea2@buzzclan.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=vk133162@gmail.com;X-NUM-GUESTS=0:mailto:vk133162@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;RSVP=TRUE
+ ;CN=Saurabh Sharda @ BuzzClan;X-NUM-GUESTS=0:mailto:saurabh.sharda@buzzclan
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=Ishaan Gupta @BuzzClan;X-NUM-GUESTS=0:mailto:ishaan.gupta@buzzclan.
+ com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=Ravindra Kumar @ BuzzClan;X-NUM-GUESTS=0:mailto:ravindra@buzzclan.c
+ om
+X-GOOGLE-CONFERENCE:https://meet.google.com/por-jzvr-aak
+X-MICROSOFT-CDO-OWNERAPPTID:1222418504
+CREATED:20260506T142008Z
+DESCRIPTION:Hi  Veeky<br><br>As discussed\, <br><br><a href="https://linked
+ in.com/in/veeky-kr" target="_blank">https://linkedin.<wbr />com/in/veeky-kr
+ </a><br><br>This will be the  interview for <b>AI</b>  role with <b>Ishaan 
+ Gupta and Ravindra Kumar</b><br><br>This will be Video call. Please login 5
+  minutes early to make sure your audio and video is working fine.<br><br>Th
+ e call is scheduled at Sharp<b> 11:00 PM IST\, 07th May<br></b><br><br><br>
+ Thanks<br>Saurabh\n\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:
+ ~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-\nJoin with Google Meet: https://meet.goog
+ le.com/por-jzvr-aak\nOr dial: (US) +1 240-442-8026 PIN: 130962971#\nMore ph
+ one numbers: https://tel.meet/por-jzvr-aak?pin=3825548870590&hs=7\n\nLearn 
+ more about Meet at: https://support.google.com/a/users/answer/9282720\n\nPl
+ ease do not edit this section.\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-
+LAST-MODIFIED:20260506T142017Z
+LOCATION:https://meet.google.com/por-jzvr-aak
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:BuzzClan Interview :: Vibe Code interview :: AI Engineer
+TRANSP:OPAQUE
+ATTACH;FILENAME=Veeky_Resume m (2).pdf;FMTTYPE=application/pdf:https://driv
+ e.google.com/open?id=1eHr9XcfXTbBB8jibsGAPAlSgfg9SmSfk
+END:VEVENT
+END:VCALENDAR
